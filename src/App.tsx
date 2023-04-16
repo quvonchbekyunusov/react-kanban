@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    useParams,
+    Routes,
+} from 'react-router-dom'
+import SignIn from './pages/signIn'
+import SignUp from './pages/signUp'
+import Home from './pages/home'
+import Projects from './pages/projects'
+import { useQueryClient, QueryClient, QueryClientProvider } from 'react-query'
+import Tasks from './pages/task'
+import TaskGroup from './pages/tasks'
+import Navbar from './components/navbar'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// Create a client
+const queryClient = new QueryClient()
+
+// Params are placeholders in the URL that begin
+// with a colon, like the `:id` param defined in
+// the route in this example. A similar convention
+// is used for matching dynamic segments in other
+// popular web frameworks like Rails and Express.
+
+export default function ParamsExample() {
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Router>
+                <div className="p-4">
+                    <Navbar />
+                    <Routes>
+                        <Route path="/signin" element={<SignIn />} />
+                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/" element={<Home />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/tasks/:id" element={<Tasks />} />
+                        <Route path="/tasks" element={<TaskGroup />} />
+                    </Routes>
+                </div>
+            </Router>
+        </QueryClientProvider>
+    )
 }
 
-export default App;
+function Child() {
+    // We can use the `useParams` hook here to access
+    // the dynamic pieces of the URL.
+    let { id } = useParams()
+
+    return (
+        <div>
+            <h3>ID: {id}</h3>
+        </div>
+    )
+}

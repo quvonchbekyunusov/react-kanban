@@ -1,0 +1,20 @@
+.section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #383838;
+    padding: 10px;
+    color: antiquewhite;
+    border-radius: 10px;
+    &__title__input {
+        background-color: #383838;
+        color: antiquewhite;
+        width: 150px;
+        border: none;
+    }
+}
+.icon1 {
+    margin-right: 10px;
+}

@@ -1,0 +1,42 @@
+.kanban {
+    display: flex;
+    align-items: flex-start;
+
+    &__section {
+        width: 400px;
+        background-color: #383838;
+        padding: 10px;
+        color: antiquewhite;
+        border-radius: 10px;
+        & ~ & {
+            margin-left: 10px;
+        }
+        &__title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: antiquewhite;
+            margin: 10px 0px 20px;
+            background-color: #383838;
+        }
+        &__content {
+            & > * ~ * {
+                margin-top: 10px;
+                color: antiquewhite;
+            }
+        }
+    }
+}
+
+.container_kanban {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-y: scroll;
+    width: 100%;
+    .kanbanbtn {
+        width: auto;
+        align-self: flex-start;
+        margin-left: 10px;
+    }
+}
